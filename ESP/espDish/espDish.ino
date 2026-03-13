@@ -52,7 +52,7 @@ void loop() {
         // Use the IP address of your Python server (defined in config.h or manually)
         // Extracting server IP/Host from SERVER_URL if needed, 
         // but for sockets, we just need the raw Hostname/IP.
-        if (client.connect("192.168.1.XX", SERVER_PORT)) { 
+        if (client.connect(SERVER_IP, SERVER_PORT)) { 
             
             // 1. Get Temperature
             sensors.requestTemperatures(); 
@@ -70,7 +70,6 @@ void loop() {
             toHex(rawBuffer, hexBuffer);
 
             // 4. Send over raw TCP socket
-            client.print("payload=");
             client.print(hexBuffer);
             
             // 5. Wait for ACK from Python
